@@ -8,7 +8,6 @@ from .forms import PostForm
 from rest_framework import generics
 from .serializers import PostSerializer
 
-
 class PostListCreateView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
