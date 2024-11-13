@@ -69,6 +69,10 @@
             background-color: #0056b3; /* Darker shade of blue */
             transform: translateY(-2px); /* Slight lift effect */
         }
+        .content-text {
+        display: block;  /* Make the content appear on the next line */
+        margin-left: 40px;  /* Indentation for the content */
+    }
     </style>
 </head>
 <body>
@@ -81,12 +85,12 @@
     </header>
 
     <div class="content">
-        <div class="blog-detail">
-            <h1>Details</h1> 
+        <div class="blog-detail"> 
+            <h1>{{ blog_detail.title }}</h1>
             <div class="details">
-                <p><strong>Title:</strong> {{ blog_detail.title }}</p>
-                <p><strong>Content:</strong> {{ blog_detail.content|safe }}</p> <!-- Use 'safe' if your content contains HTML -->
+                <p><strong>Content:</strong><br><span class="content-text">{{ blog_detail.content|safe }}</span></p>
             </div>
+            
         </div>
     </div>
 
