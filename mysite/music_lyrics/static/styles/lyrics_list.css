@@ -220,3 +220,14 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.tooltip-confirm {
+    align-items: flex-end;
+}
+
+
+.tooltip-confirm.show {
+    display: block;
+    opacity: 1;
+}
+

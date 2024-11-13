@@ -145,11 +145,20 @@
                                         <i class="far fa-heart"></i>
                                     </button>
                                     <a href="{% url 'lyrics_update' lyric.pk %}" class="btn btn-warning" style="margin-left: 6.5rem;"><i class="fas fa-edit"></i> Edit</a>
-                                    <a href="{% url 'lyrics_delete' lyric.pk %}" 
-                                       class="btn btn-danger" 
-                                       onclick="return confirm('Are you sure you want to delete this lyric?');">
-                                       <i class="fas fa-trash"></i> Delete
+                                    <a href="#" class="btn btn-danger delete-btn" data-toggle="tooltip" data-id="{{ lyric.pk }}" title="Are you sure?">
+                                        <i class="fas fa-trash"></i> Delete
                                     </a>
+                                     <!-- Horizontal Border between buttons and confirmation -->
+                                    <hr style="border-top: 1px solid #ccc; margin-top: 15px; margin-bottom: 10px;">
+
+                                    <!-- Right aligned tooltip with margin and border -->
+                                    <div id="tooltip-confirm-{{ lyric.pk }}" class="tooltip-confirm" 
+                                        style="display: none; text-align: right; margin-top: 10px; margin-right: 15px;">
+                                        <p>Are you sure?</p>
+                                        <button class="btn btn-sm btn-danger confirm-delete" data-id="{{ lyric.pk }}" style="display: inline-block;">Yes</button>
+                                        <button class="btn btn-sm btn-secondary cancel-delete" data-id="{{ lyric.pk }}" style="display: inline-block;">No</button>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -208,6 +217,37 @@
     
     
     <script>
+            // Delete Tooltip
+            $(document).ready(function() {
+                // Show the tooltip confirmation on click
+                $('.delete-btn').on('click', function(e) {
+                    e.preventDefault();
+                    const id = $(this).data('id');
+                    const tooltip = $(`#tooltip-confirm-${id}`);
+                    
+                    // Hide all other tooltips
+                    $('.tooltip-confirm').not(tooltip).hide();
+                
+                    
+                    // Toggle the current tooltip
+                    tooltip.toggle();
+                });
+                
+                // Handle the "Yes" button click
+                $('.confirm-delete').on('click', function() {
+                    const id = $(this).data('id');
+                    // Perform the actual deletion by redirecting to the delete URL
+                    window.location.href = `/lyrics/lyrics/${id}/delete/`;  
+                });
+                
+                // Handle the "No" button click
+                $('.cancel-delete').on('click', function() {
+                    const id = $(this).data('id');
+                    $(`#tooltip-confirm-${id}`).hide(); 
+                  
+                });
+            });            
+
              // Toggle the menu open/close
              document.getElementById('menu-toggle').addEventListener('click', function() {
                 const menu = document.getElementById('menu');
