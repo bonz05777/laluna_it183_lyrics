@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="icon" type="image/png" href={% static 'images/white.png' %}>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles/about.css' %}">
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Lyrics List</h1>
+        <!-- Menu Icon -->
+        <button class="btn" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Sliding Menu -->
+        <div id="menu" class="menu">
+            <span id="close-menu" class="close-menu">&times;</span> <!-- Close button -->
+            <ul class="menu-items">
+                <li><a href="{% url 'lyrics_list' %}"><i class="fas fa-home"></i> Home</a></li>
+
+                <li><a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About Us</a></li> <!-- About Us link with icon -->
+                <li><a href="#stats-section"><i class="fas fa-chart-pie"></i> Platform Statistics</a></li>
+                <li><a href="#contact-section"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                            <!-- Add more menu items if needed -->
+            </ul>
+        </div>
+
+    </div>
+
+  <!-- Main Content -->
+<div class="container about-section">
+    <div class="logo-placeholder">
+        <img src="{% static 'images/white.png' %}" alt="About Us Logo" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <p style="text-align: center; font-size: 14px; font-style: italic;">For those who did not know all the words.</p> <!-- Slogan -->
+    <h1>About Us</h1>
+    <!-- Typing Animation for First Text -->
+    <div class="typing-animation">
+        <p id="animated-text"></p>
+    </div>
+    <!-- Second Paragraph, initially hidden -->
+    <div id="second-paragraph" style="display: none; opacity: 0;">
+        <p style="font-size: 14px; font-style: italic;">Our mission is to connect people with music by providing 
+            an easy-to-use platform for accessing song lyrics, curated playlists, and the occasional 
+            “Wait, that’s not how it goes!” moment. Remember, this is for those who didn’t know all the 
+            words—because we’ve all pretended to know the lyrics and ended up mumbling through the chorus!</p>
+    </div>
+   
+</div>
+
+
+    <!-- Developer Info Section -->
+    <div class="container developer-info text-center wow animate__animated animate__fadeIn">
+        <h2>Just Me</h2>
+        <img src="{% static 'images/me.jpeg' %}" alt="Developer" class="developer-image mb-3">
+        <p>Hello! I'm Luna, the creator of Lyrics List. My motivation comes from a love for music and 
+           the desire to help others connect with their favorite songs. I believe lyrics have the power to bring 
+           people together, and I hope this platform enhances your musical experience!</p>
+    </div>
+
+
+<!-- Testimonials Section -->
+<div class="container">
+    <h2 class="text-center my-4">What Our Users Say</h2>
+    <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#testimonialCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#testimonialCarousel" data-slide-to="1"></li>
+            <li data-target="#testimonialCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Testimonial Cards -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="testimonial-card">
+                    <h5>Bonz</h5>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Lyrics List is amazing! I always find the lyrics I need."</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="testimonial-card">
+                    <h5>Miya</h5>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>"Great platform for finding the lyrics of my favorite songs."</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="testimonial-card">
+                    <h5>Luna</h5>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>"This site is super helpful for karaoke nights with friends."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- Platform Statistics Section -->
+<div class="container statistics-section text-center">
+    <h2 id="stats-section">Platform Statistics</h2>
+    
+    <!-- Pie Chart -->
+    <div class="chart-container" style="position: relative; height: 300px; width: 300px; margin: 0 auto;">
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="chart-container" style="position: relative; height: 300px; width: 600px; margin: 20px auto;">
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <!-- Line Chart -->
+    <div class="chart-container" style="position: relative; height: 300px; width: 600px; margin: 20px auto;">
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    
+<!-- Conclusion Section -->
+<div class="container conclusion-section text-center" id="contact-section">
+    <h2>Contact Us</h2>
+    <p>
+        Share your favorite lyrics effortlessly through these links and let the music bring us all together.
+    </p>
+    <div class="social-links">
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+    </div>
+</div>
+
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Lyrics List. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize WOW.js for animations
+            new WOW().init();
+    
+            // Toggle the menu open/close
+            document.getElementById('menu-toggle').addEventListener('click', function() {
+                const menu = document.getElementById('menu');
+                if (menu.style.right === '0px') {
+                    menu.style.right = '-250px'; // Hide the menu
+                } else {
+                    menu.style.right = '0px'; // Show the menu
+                }
+            });
+    
+            // Close the menu when the close button is clicked
+            document.getElementById('close-menu').addEventListener('click', function() {
+                const menu = document.getElementById('menu');
+                menu.style.right = '-250px'; // Hide the menu
+            });
+    
+            // Typing Animation
+            const textToAnimate = "Welcome to Lyrics List! This platform is your ultimate guide to the world of song lyrics—because sometimes, we all need a little help remembering those catchy lines! Whether you're a casual listener who sings in the shower or a music enthusiast who's convinced they could win a karaoke championship, we’ve got the lyrics to your favorite tunes ready to go. Explore this platform and discover new music through the power of lyrics!";
+            const animatedTextElement = document.getElementById('animated-text');
+            const secondParagraph = document.getElementById('second-paragraph');
+            let index = 0;
+    
+            function type() {
+                if (index < textToAnimate.length) {
+                    animatedTextElement.textContent += textToAnimate.charAt(index);
+                    index++;
+                    setTimeout(type, 30); // Adjust typing speed here (in milliseconds)
+                } else {
+                   
+                    fadeIn(secondParagraph);
+                }
+            }
+    
+            // Function to fade in the second paragraph
+            function fadeIn(element) {
+                let opacity = 0;
+                element.style.display = 'block';
+    
+                const fadeEffect = setInterval(function() {
+                    if (opacity < 1) {
+                        opacity += 0.05;
+                        element.style.opacity = opacity;
+                    } else {
+                        clearInterval(fadeEffect);
+                    }
+                }, 100);
+            }
+    
+            
+            setTimeout(type, 500); 
+        });
+
+ // Pie Chart (e.g., user distribution by region)
+var ctxPie = document.getElementById('pieChart').getContext('2d');
+var pieChart = new Chart(ctxPie, {
+    type: 'pie',
+    data: {
+        labels: ['North America', 'Europe', 'Asia', 'Other'],
+        datasets: [{
+            data: [45, 25, 20, 10], // Example data
+            backgroundColor: ['#1DB954', '#FF6384', '#36A2EB', '#FFCE56']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        // Define the places associated with each region
+                        const places = {
+                            'North America': 'USA, Canada, Mexico',
+                            'Europe': 'UK, Germany, France',
+                            'Asia': 'China, India, Japan',
+                            'Other': 'Australia, Africa, South America'
+                        };
+                        // Get the label for the hovered segment
+                        const region = context.label;
+                        // Return the custom label (actual places)
+                        return `${places[region]}: ${context.raw}%`;
+                    }
+                }
+            }
+        }
+    }
+});
+
+
+ // Bar Chart (e.g., daily active users)
+ var ctxBar = document.getElementById('barChart').getContext('2d');
+ var barChart = new Chart(ctxBar, {
+     type: 'bar',
+     data: {
+         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+         datasets: [{
+             label: 'Active Users ',
+             data: [30, 50, 40, 60, 70, 55, 45], // Example data
+             backgroundColor: '#1DB954'
+         }]
+     },
+     options: {
+         responsive: true,
+         maintainAspectRatio: false,
+         scales: {
+             y: {
+                 beginAtZero: true
+             }
+         }
+     }
+ });
+
+ // Line Chart (e.g., user growth over the year)
+ var ctxLine = document.getElementById('lineChart').getContext('2d');
+ var lineChart = new Chart(ctxLine, {
+     type: 'line',
+     data: {
+         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+         datasets: [{
+             label: 'New Users',
+             data: [500, 600, 750, 800, 900, 850, 1000, 1100, 1200, 1300, 1400, 1500], // Example data
+             borderColor: '#1DB954',
+             fill: false
+         }]
+     },
+     options: {
+         responsive: true,
+         maintainAspectRatio: false,
+         scales: {
+             y: {
+                 beginAtZero: true
+             }
+         }
+     }
+ });
+
+ document.querySelectorAll('.sidebar-menu a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href').substring(1); // Get target section ID
+        const targetElement = document.getElementById(targetId);
+
+        const offset = 500; 
+
+        // Get element's position relative to the top of the document
+        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - offset; // Subtract the offset
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth' // Enable smooth scroll
+        });
+    });
+});
+
+    </script>
+    
+
+</body>
+</html>

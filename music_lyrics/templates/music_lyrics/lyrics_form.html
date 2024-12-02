@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if form.instance.pk %}Edit Lyrics{% else %}Add Lyrics{% endif %}</title>
+    <link rel="icon" type="image/png" href={% static 'images/white.png' %}>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles/lyrics_form.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="{% url 'lyrics_list' %}" class="btn btn-light"><i class="fas fa-arrow-left"></i> Back</a>
+            <h1>{% if form.instance.pk %}Edit Lyrics{% else %}Add Lyrics{% endif %}</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" value="{{ form.title.value }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="artist">Artist</label>
+                        <input type="text" id="artist" name="artist" class="form-control" value="{{ form.artist.value }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="lyrics">Lyrics</label>
+                        <textarea id="lyrics" name="lyrics" class="form-control" rows="10">{{ form.lyrics.value }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Lyrics</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Lyrics List. All rights reserved.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
